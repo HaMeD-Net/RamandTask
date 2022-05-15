@@ -1,0 +1,23 @@
+.submit, .remember{
+    justify-content: center;
+    text-align: left;
+}
+
+.ant-form{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #2f4f4f;
+}
+.ant-form-item{
+    width: 100%;
+}
+#form-container{
+    width: 35%;
+    box-shadow: 1px 1px 4px #040303;
+    padding: 10px 5px;
+    background-color: #ffffff78;
+}
