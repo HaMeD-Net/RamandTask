@@ -91,14 +91,7 @@ const DataTable = () => {
             onCancel={() => resetEditing()}
             onOk={() => {
                 dispatch({ type: "OK_MODAL", payload: editing })
-                // setRes(pre => {
-                //     return pre.map(item => {
-                //         if (item.id === editing.id)
-                //             return editing;
-                //         else
-                //             return item
-                //     })
-                // })
+
                 resetEditing();
             }}
             okText="Save"
