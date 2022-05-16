@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+
 import { Badge, Space } from 'antd';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -8,9 +10,35 @@ import "./home.css"
 
 
 const { Search } = Input;
-const onSearch = value => console.log(value);
+
 export default function Header() {
+
+    const [searchText, setSearchText] = useState(null);
+    const [searchShow, setSearchShow] = useState(false);
+
+    const dispatch = useDispatch();
+    const onSearch = (value) => {
+        setSearchShow(true)
+        console.log("OnSearch");
+        setSearchText(value);
+
+        if (searchText) {
+            dispatch({ type: "SEARCH_FILTER", payload: searchText.toLowerCase() })
+
+        }
+        else {
+            dispatch({ type: "REQUEST" })
+            console.log("new Request");
+        }
+    }
+    const response = useSelector((state) => state.ResponseReducer.response)
+
+    useEffect(() => {
+        setSearchShow(false)
+    }, [])
+
     return (
+
         <header>
             <nav className="navBar">
                 <Space>
@@ -18,18 +46,19 @@ export default function Header() {
                         <span>
                             Search Result:
                         </span>
-                        <Badge
-                            count={10}
-                            className="searchCount"
-                            style={{ backgroundColor: '#52c41a' }}
-                        />
+                        {searchShow &&
+                            <Badge
+                                count={response?.length}
+                                className="searchCount"
+                                style={{ backgroundColor: '#52c41a' }}
+                            />}
                     </Tag>
                 </Space>
                 <Space>
                     <Search placeholder="search text" onSearch={onSearch} enterButton />
                 </Space>
                 <div className="profile">
-                    <Tag color="processing">Username: sample</Tag>
+                    <Tag color="processing">Username: admin</Tag>
                     <Avatar icon={<UserOutlined />} />
                 </div>
 

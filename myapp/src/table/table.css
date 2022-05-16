@@ -4,3 +4,8 @@
 .ant-table-thead .ant-table-cell{
     background-color: #ececec;
 }
+.ant-spin-lg .ant-spin-dot i {
+    width: 25px;
+    height: 25px;
+    margin: 25px;
+}
