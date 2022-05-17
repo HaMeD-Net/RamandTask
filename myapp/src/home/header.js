@@ -13,20 +13,17 @@ const { Search } = Input;
 
 export default function Header() {
 
-    const [searchText, setSearchText] = useState(null);
     const [searchShow, setSearchShow] = useState(false);
 
     const dispatch = useDispatch();
     const onSearch = (value) => {
         setSearchShow(true)
         console.log("OnSearch");
-        setSearchText(value);
 
-        if (searchText) {
-            dispatch({ type: "SEARCH_FILTER", payload: searchText.toLowerCase() })
-
-        }
+        if (value)
+            dispatch({ type: "SEARCH_FILTER", payload: value.toLowerCase() })
         else {
+
             dispatch({ type: "REQUEST" })
             console.log("new Request");
         }
@@ -42,17 +39,20 @@ export default function Header() {
         <header>
             <nav className="navBar">
                 <Space>
-                    <Tag>
-                        <span>
-                            Search Result:
-                        </span>
-                        {searchShow &&
+                    {searchShow &&
+                        <Tag>
+
+                            <span>
+                                Search Result:
+                            </span>
+
                             <Badge
                                 count={response?.length}
                                 className="searchCount"
                                 style={{ backgroundColor: '#52c41a' }}
-                            />}
-                    </Tag>
+                            />
+                        </Tag>
+                    }
                 </Space>
                 <Space>
                     <Search placeholder="search text" onSearch={onSearch} enterButton />

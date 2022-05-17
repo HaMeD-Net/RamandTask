@@ -9,7 +9,6 @@ const { TextArea } = Input;
 
 const DataTable = () => {
 
-    // const [res, setRes] = useState();
     const [isEditing, setIsEditing] = useState(false)
     const [editing, setEditing] = useState(null)
 
@@ -98,6 +97,7 @@ const DataTable = () => {
         >
 
             <Input
+                className="title-input"
                 value={editing?.title}
                 onChange={(e) => {
                     setEditing(pre => {

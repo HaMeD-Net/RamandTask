@@ -8,11 +8,12 @@ const Login = () => {
     const navigate = useNavigate();
 
     const onFinish = (values) => {
-        localStorage.setItem('uesername', values.username);
+        localStorage.setItem('username', values.username);
         localStorage.setItem('password', values.username);
         if (values.username === 'admin' && values.password === 'admin')
             navigate('/home')
     };
+
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
